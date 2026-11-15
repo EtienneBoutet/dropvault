@@ -5,9 +5,10 @@ import { staticFiles } from 'remix/middleware/static'
 import controller from './actions/controller.tsx'
 import { assets } from './assets.ts'
 import { routes } from './routes.ts'
+import { formData } from 'remix/middleware/form-data'
 
 export const router = createRouter({
-  middleware: [staticFiles('./public', { index: false }), render({ assets })],
+  middleware: [staticFiles('./public', { index: false }), render({ assets }), formData()],
 })
 
 export type AppContext = RouterContext<typeof router>
