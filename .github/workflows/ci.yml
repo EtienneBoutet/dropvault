@@ -72,11 +72,14 @@ jobs:
           S3_SECRET_ACCESS_KEY=$(openssl rand -hex 32)
           EOF
 
-      # <-- Replace with your existing Docker Compose & Playwright run steps (lines 34+ of e2e.yml)
-      - name: Start services and run E2E tests
-        run: |
-          docker compose up -d --build --wait
-          npx playwright test
+      - name: Set up Garage
+        run: bash scripts/dev-setup.sh
+
+      - name: Start app and wait until healthy
+        run: docker compose up -d --build --wait remix
+
+      - name: Run Playwright
+        run: npx playwright test
 
       - name: Tear down services
         if: always()
