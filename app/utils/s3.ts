@@ -2,18 +2,18 @@ import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const s3 = new S3Client({
-  region: "garage",
+  region: process.env.S3_REGION!,
   endpoint: "http://localhost:3900",
   forcePathStyle: true,
   credentials: {
-    accessKeyId: process.env.GARAGE_KEY_ID!,
-    secretAccessKey: process.env.GARAGE_SECRET_KEY!,
+    accessKeyId: process.env.S3_ACCESS_KEY_ID!,
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
   },
   requestChecksumCalculation: "WHEN_REQUIRED", // TODO : only locally
   responseChecksumValidation: "WHEN_REQUIRED",  // TODO : only locally
 });
 
-const BUCKET = "images";
+const BUCKET = process.env.S3_BUCKET!;
 
 export async function createUrls(fileName: string, contentType: string) {
   const key = `${crypto.randomUUID()}-${fileName}`;
