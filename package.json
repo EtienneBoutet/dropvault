@@ -10,7 +10,9 @@
     "hmr": "NODE_ENV=development node hmr.ts",
     "start": "NODE_ENV=production node --import remix/node-tsx server.ts",
     "test": "NODE_ENV=test remix test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "engines": {
     "node": ">=24.3.0"
@@ -22,6 +24,7 @@
     "tsx": "^4.23.15"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@types/node": "latest",
     "typescript": "latest"
   }

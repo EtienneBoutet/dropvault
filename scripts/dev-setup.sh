@@ -2,7 +2,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-COMPOSE="docker compose -f docker-compose.dev.yml"
+COMPOSE_FILE="${COMPOSE_FILE:-docker-compose.dev.yml}"
+COMPOSE="docker compose -f $COMPOSE_FILE"
 g() { $COMPOSE exec -T garage /garage "$@"; }
 
 # Compose needs .env to exist
@@ -28,9 +29,18 @@ fi
 g bucket info "$BUCKET" >/dev/null 2>&1 || g bucket create "$BUCKET"
 
 # Key
-if ! g key info "$KEY_NAME" >/dev/null 2>&1; then
-  g key create "$KEY_NAME"
-  NEW_KEY=1
+if [ -n "${S3_ACCESS_KEY_ID:-}" ] && [ -n "${S3_SECRET_ACCESS_KEY:-}" ]; then
+  # Credentials already in .env (CI, or a dev who has them): import that exact key
+  KEY_REF="$S3_ACCESS_KEY_ID"
+  g key info "$KEY_REF" >/dev/null 2>&1 \
+    || g key import --yes -n "$KEY_NAME" "$S3_ACCESS_KEY_ID" "$S3_SECRET_ACCESS_KEY"
+else
+  # No credentials: create a key and print it for the dev to paste
+  KEY_REF="$KEY_NAME"
+  if ! g key info "$KEY_REF" >/dev/null 2>&1; then
+    g key create "$KEY_NAME"
+    NEW_KEY=1
+  fi
 fi
 
 # Permissions (safe to repeat)

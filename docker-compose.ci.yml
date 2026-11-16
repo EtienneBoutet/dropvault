@@ -1,0 +1,42 @@
+services:
+  garage:
+    image: dxflrs/garage:v1.0.1
+    ports:
+      - "3900:3900"
+    volumes:
+      - ./garage.toml:/etc/garage.toml:ro
+    tmpfs:
+      - /var/lib/garage/meta
+      - /var/lib/garage/data
+    healthcheck:
+      test: ["CMD", "/garage", "status"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+  remix:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      garage:
+        condition: service_healthy
+    ports:
+      - "44100:44100"
+    env_file: .env
+    environment:
+      NODE_ENV: test
+      PORT: 44100
+      HOST: 0.0.0.0
+    command: ["npx", "tsx", "server.ts"]
+    healthcheck:
+      # Any HTTP response means the server is up
+      test:
+        - "CMD"
+        - "node"
+        - "-e"
+        - "fetch('http://localhost:44100').then(() => process.exit(0)).catch(() => process.exit(1))"
+      interval: 3s
+      timeout: 5s
+      retries: 40
+      start_period: 5s

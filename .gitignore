@@ -4,3 +4,10 @@ tmp/
 .DS_Store
 .env
 garage-data/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
