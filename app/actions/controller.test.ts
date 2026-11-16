@@ -6,7 +6,7 @@ import { routes } from "../routes.ts";
 
 describe("root controller", () => {
   it("GET / returns the home page", async () => {
-    let response = await router.fetch(
+    const response = await router.fetch(
       new URL(routes.home.href(), "http://localhost"),
     );
 

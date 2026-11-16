@@ -14,8 +14,8 @@ const DEFAULT_TITLE = readAppDisplayName("dropvault");
 
 export function Document(handle: Handle<DocumentProps>) {
   return () => {
-    let { children, head, title = DEFAULT_TITLE } = handle.props;
-    let { href, importMap, preloads } = scriptEntry;
+    const { children, head, title = DEFAULT_TITLE } = handle.props;
+    const { href, importMap, preloads } = scriptEntry;
 
     return (
       <html lang="en">
