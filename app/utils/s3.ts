@@ -1,16 +1,23 @@
-import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import {
+  GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const s3 = new S3Client({
   region: process.env.S3_REGION!,
-  endpoint: process.env.S3_PUBLIC_ENDPOINT ?? process.env.S3_ENDPOINT ?? "http://localhost:3900",
+  endpoint:
+    process.env.S3_PUBLIC_ENDPOINT ??
+    process.env.S3_ENDPOINT ??
+    "http://localhost:3900",
   forcePathStyle: true,
   credentials: {
     accessKeyId: process.env.S3_ACCESS_KEY_ID!,
     secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
   },
   requestChecksumCalculation: "WHEN_REQUIRED", // TODO : only locally
-  responseChecksumValidation: "WHEN_REQUIRED",  // TODO : only locally
+  responseChecksumValidation: "WHEN_REQUIRED", // TODO : only locally
 });
 
 const BUCKET = process.env.S3_BUCKET!;
@@ -25,7 +32,7 @@ export async function createUrls(fileName: string, contentType: string) {
       Key: key,
       ContentType: contentType,
     }),
-    { expiresIn: 300 } // 5 minutes to upload
+    { expiresIn: 300 }, // 5 minutes to upload
   );
 
   const shareUrl = await getSignedUrl(
@@ -35,7 +42,7 @@ export async function createUrls(fileName: string, contentType: string) {
       Key: key,
       ResponseContentDisposition: `attachment; filename="${fileName}"`,
     }),
-    { expiresIn: 86400 } // Shareable link valid for 24 hours
+    { expiresIn: 86400 }, // Shareable link valid for 24 hours
   );
 
   return { uploadUrl, shareUrl };

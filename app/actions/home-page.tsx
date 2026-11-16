@@ -1,5 +1,5 @@
-import { Document } from './document.tsx'
-import { Upload } from './public/upload.tsx'
+import { Document } from "./document.tsx";
+import { Upload } from "./public/upload.tsx";
 
 export function HomePage() {
   return () => (
@@ -11,18 +11,22 @@ export function HomePage() {
         </div>
       </main>
     </Document>
-  )
+  );
 }
 
 function HomeHead() {
   return () => (
     <>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
+      />
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
       />
     </>
-  )
+  );
 }

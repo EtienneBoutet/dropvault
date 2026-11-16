@@ -24,7 +24,7 @@ export async function applyCors() {
           },
         ],
       },
-    })
+    }),
   );
 
   console.log("CORS applied successfully!");

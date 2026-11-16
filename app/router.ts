@@ -1,22 +1,26 @@
-import { createRouter, type RouterContext } from 'remix/router'
-import { render } from 'remix/middleware/render'
-import { staticFiles } from 'remix/middleware/static'
+import { createRouter, type RouterContext } from "remix/router";
+import { render } from "remix/middleware/render";
+import { staticFiles } from "remix/middleware/static";
 
-import controller from './actions/controller.tsx'
-import { assets } from './assets.ts'
-import { routes } from './routes.ts'
-import { formData } from 'remix/middleware/form-data'
+import controller from "./actions/controller.tsx";
+import { assets } from "./assets.ts";
+import { routes } from "./routes.ts";
+import { formData } from "remix/middleware/form-data";
 
 export const router = createRouter({
-  middleware: [staticFiles('./public', { index: false }), render({ assets }), formData()],
-})
+  middleware: [
+    staticFiles("./public", { index: false }),
+    render({ assets }),
+    formData(),
+  ],
+});
 
-export type AppContext = RouterContext<typeof router>
+export type AppContext = RouterContext<typeof router>;
 
-declare module 'remix' {
+declare module "remix" {
   interface RouterTypes {
-    context: AppContext
+    context: AppContext;
   }
 }
 
-router.map(routes, controller)
+router.map(routes, controller);
