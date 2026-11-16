@@ -1,0 +1,22 @@
+node_modules
+npm-debug.log*
+.git
+.gitignore
+
+# Secrets and local config
+.env
+.env.*
+
+# Docker files themselves
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Build output, logs, editor files
+dist
+build
+coverage
+*.log
+.DS_Store
+.vscode
+.idea

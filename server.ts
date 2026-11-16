@@ -4,6 +4,14 @@ import { createRequestListener } from 'remix/node-fetch-server'
 import { assets } from './app/assets.ts'
 import { router } from './app/router.ts'
 
+import { applyCors } from "./set-cors.tsx";
+
+if (process.env.NODE_ENV !== "production") {
+  applyCors().catch((err) =>
+    console.warn("Could not apply CORS (is Garage set up and .env filled in?):", err.message)
+  );
+}
+
 const port = process.env.PORT ? Number.parseInt(process.env.PORT, 10) : 44100
 const hmrProxyPort = process.env.HMR_PROXY_PORT
   ? Number.parseInt(process.env.HMR_PROXY_PORT, 10)

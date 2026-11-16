@@ -1,0 +1,31 @@
+services:
+  garage:
+    image: dxflrs/garage:v1.0.1
+    container_name: garage
+    ports:
+      - "3900:3900"   # S3 API
+      - "3903:3903"   # admin API
+    volumes:
+      - ./garage.toml:/etc/garage.toml:ro
+      - ./garage-data/meta:/var/lib/garage/meta
+      - ./garage-data/data:/var/lib/garage/data
+    restart: unless-stopped
+
+  remix:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: remix3-app-dev
+    depends_on:
+      - garage
+    ports:
+      - "44100:44100"
+    env_file: .env
+    environment:
+      NODE_ENV: development
+      PORT: 44100
+      HOST: 0.0.0.0
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    command: ["npx", "tsx", "watch", "server.ts"]
