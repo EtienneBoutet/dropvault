@@ -3,7 +3,7 @@ import { createController } from "remix/router";
 import { assets } from "../assets.ts";
 import { routes } from "../routes.ts";
 import { HomePage } from "./home-page.tsx";
-import { createUrls } from "../utils/s3.ts";
+import { createUrls } from "../infra/s3.ts";
 
 export default createController(routes, {
   actions: {
