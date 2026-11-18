@@ -1,0 +1,8 @@
+# Drizzle auto-generated migrations and snapshots
+drizzle/
+
+# Build artifacts & dependencies
+node_modules/
+.react-router/
+build/
+public/build/
