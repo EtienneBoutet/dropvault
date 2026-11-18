@@ -23,16 +23,19 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1169.0",
     "@aws-sdk/s3-request-presigner": "^3.1169.0",
+    "drizzle-orm": "^0.45.4",
     "pg": "^8.23.1",
-    "remix": "^3.2.0",
-    "tsx": "^4.23.15"
+    "postgres": "^4.1.1",
+    "remix": "^3.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.65.1",
     "@types/node": "latest",
+    "drizzle-kit": "^0.31.11",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.14.0",
+    "tsx": "^4.23.15",
     "typescript": "latest",
     "typescript-eslint": "^8.73.0"
   }

@@ -1,0 +1,1 @@
+ALTER TABLE "files" ADD COLUMN "password_hash" text NOT NULL;
