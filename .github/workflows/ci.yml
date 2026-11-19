@@ -70,6 +70,7 @@ jobs:
           S3_BUCKET=uploads
           S3_ACCESS_KEY_ID=GK$(openssl rand -hex 12)
           S3_SECRET_ACCESS_KEY=$(openssl rand -hex 32)
+          DATABASE_URL="postgresql://admin:admin@db:5432/dropvault_db"
           EOF
 
       - name: Set up Garage
