@@ -1,8 +1,4 @@
-import {
-  GetObjectCommand,
-  PutObjectCommand,
-  S3Client,
-} from "@aws-sdk/client-s3";
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const s3 = new S3Client({
@@ -22,8 +18,8 @@ const s3 = new S3Client({
 
 const BUCKET = process.env.S3_BUCKET!;
 
-export async function createUrls(fileName: string, contentType: string) {
-  const key = `${crypto.randomUUID()}-${fileName}`;
+export async function createSignedUrl(fileName: string, contentType: string) {
+  const key = crypto.randomUUID();
 
   const uploadUrl = await getSignedUrl(
     s3,
@@ -35,15 +31,5 @@ export async function createUrls(fileName: string, contentType: string) {
     { expiresIn: 300 }, // 5 minutes to upload
   );
 
-  const shareUrl = await getSignedUrl(
-    s3,
-    new GetObjectCommand({
-      Bucket: BUCKET,
-      Key: key,
-      ResponseContentDisposition: `attachment; filename="${fileName}"`,
-    }),
-    { expiresIn: 86400 }, // Shareable link valid for 24 hours
-  );
-
-  return { uploadUrl, shareUrl };
+  return { uploadUrl, key };
 }

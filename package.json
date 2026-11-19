@@ -5,6 +5,7 @@
   "scripts": {
     "dev:setup": "bash scripts/dev-setup.sh",
     "dev": "docker compose -f docker-compose.dev.yml up",
+    "dev:re": "docker compose -f docker-compose.dev.yml up --build -V",
     "dev:down": "docker compose -f docker-compose.dev.yml down",
     "dev:reset": "docker compose -f docker-compose.dev.yml down -v && rm -rf garage-data",
     "hmr": "NODE_ENV=development node hmr.ts",

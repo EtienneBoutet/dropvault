@@ -7,7 +7,7 @@ declare global {
   var __db: ReturnType<typeof postgres> | undefined;
 }
 
-const connectionString = process.env.DATABASE_URL!;
+const connectionString = process.env.DATABASE_URL_LOCAL!;
 
 const queryClient = global.__db ?? postgres(connectionString);
 if (process.env.NODE_ENV !== "production") {

@@ -29,6 +29,20 @@
       "when": 1795031519296,
       "tag": "0003_fancy_centennial",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1795032478141,
+      "tag": "0004_sloppy_cargill",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1795047665294,
+      "tag": "0005_clumsy_vapor",
+      "breakpoints": true
     }
   ]
 }
