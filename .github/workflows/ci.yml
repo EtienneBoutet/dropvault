@@ -72,6 +72,9 @@ jobs:
           S3_SECRET_ACCESS_KEY=$(openssl rand -hex 32)
           EOF
 
+      - name: Run database migrations
+        run: docker compose exec -T remix npx drizzle-kit migrate
+
       - name: Set up Garage
         run: bash scripts/dev-setup.sh
 
