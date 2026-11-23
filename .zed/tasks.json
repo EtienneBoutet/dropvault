@@ -2,46 +2,46 @@
   {
     "label": "Test",
     "command": "npm",
-    "args": ["run", "test"],
+    "args": ["run", "test"]
   },
   {
     "label": "E2E Tests",
     "command": "npm",
-    "args": ["run", "test:e2e"],
+    "args": ["run", "test:e2e"]
   },
   {
     "label": "Lint Fix All",
     "command": "npm",
-    "args": ["run", "lint:fix"],
+    "args": ["run", "lint:fix"]
   },
   {
     "label": "Format Fix All",
     "command": "npm",
-    "args": ["run", "format:write"],
+    "args": ["run", "format:write"]
   },
   {
     "label": "Dev Setup",
     "command": "npm",
-    "args": ["run", "dev:setup"],
+    "args": ["run", "dev:setup"]
   },
   {
     "label": "Dev",
     "command": "npm",
-    "args": ["run", "dev"],
+    "args": ["run", "dev"]
   },
   {
     "label": "Dev Rebuild",
     "command": "npm",
-    "args": ["run", "dev:re"],
+    "args": ["run", "dev:re"]
   },
   {
     "label": "Dev Down",
     "command": "npm",
-    "args": ["run", "dev:down"],
+    "args": ["run", "dev:down"]
   },
   {
     "label": "Dev Reset",
     "command": "npm",
-    "args": ["run", "dev:reset"],
-  },
+    "args": ["run", "dev:reset"]
+  }
 ]
