@@ -85,6 +85,12 @@ jobs:
       - name: Run Playwright
         run: npx playwright test
 
+      - name: Collect diagnostics
+        if: failure()
+        run: |
+          echo "========== REMIX LOGS =========="
+          docker compose logs --no-color remix
+
       - name: Tear down services
         if: always()
         run: docker compose down -v
