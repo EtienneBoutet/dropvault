@@ -16,7 +16,8 @@
     "test:e2e:ui": "playwright test --ui",
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix",
-    "format:check": "npx prettier --check ."
+    "format:check": "npx prettier --check .",
+    "format:write": "npx prettier --write ."
   },
   "engines": {
     "node": ">=24.3.0"
