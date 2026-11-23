@@ -1,0 +1,9 @@
+[
+  {
+    "label": "Run E2E Tests",
+    "command": "npm",
+    "args": ["run", "test:e2e"],
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+  },
+]
