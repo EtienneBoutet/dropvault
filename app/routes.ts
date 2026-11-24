@@ -5,4 +5,8 @@ export const routes = route({
   home: "/",
   presign: post("api/presign"),
   confirm: post("api/confirm"),
+  files: {
+    show: get("/d/:slug"),
+    download: get("api/download/:slug"),
+  },
 });

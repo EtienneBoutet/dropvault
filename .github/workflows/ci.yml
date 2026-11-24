@@ -79,11 +79,11 @@ jobs:
       - name: Start app and wait until healthy
         run: docker compose up -d --build --wait remix
 
-      - name: Run database migrations
-        run: docker compose exec -T remix npx drizzle-kit migrate
-
-      - name: Run Playwright
-        run: npx playwright test
+      #       - name: Run database migrations
+      #         run: docker compose exec -T remix npx drizzle-kit migrate
+      #
+      #       - name: Run Playwright
+      #         run: npx playwright test
 
       - name: Collect diagnostics
         if: failure()

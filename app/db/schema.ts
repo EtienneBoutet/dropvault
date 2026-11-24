@@ -36,3 +36,5 @@ export const files = pgTable("files", {
     .notNull()
     .$onUpdate(() => new Date()),
 });
+
+export type File = typeof files.$inferSelect;

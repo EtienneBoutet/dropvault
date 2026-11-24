@@ -3,6 +3,7 @@ import { render } from "remix/middleware/render";
 import { staticFiles } from "remix/middleware/static";
 
 import controller from "./actions/controller.tsx";
+import documentsController from "./actions/downloads/controller.tsx";
 import { assets } from "./assets.ts";
 import { routes } from "./routes.ts";
 import { formData } from "remix/middleware/form-data";
@@ -24,3 +25,4 @@ declare module "remix" {
 }
 
 router.map(routes, controller);
+router.map(routes.files, documentsController);

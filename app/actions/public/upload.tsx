@@ -70,6 +70,10 @@ export const Upload = clientEntry(
 
         if (!confirm.ok) throw new Error(`Confirm failed (${confirm.status})`);
 
+        const result = await confirm.json();
+
+        shareUrl = result.url;
+
         form.reset();
       } catch (e) {
         error = e instanceof Error ? e.message : "Upload failed";

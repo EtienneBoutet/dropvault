@@ -65,7 +65,9 @@ export default createController(routes, {
         })
         .returning({ id: files.id, slug: files.slug });
 
-      return Response.json({ inserted });
+      const url = new URL(`/d/${inserted.slug}`, request.url).toString();
+
+      return Response.json({ url });
     },
   },
 });
